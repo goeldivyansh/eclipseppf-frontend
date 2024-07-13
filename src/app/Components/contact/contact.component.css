@@ -1,0 +1,14 @@
+.container {
+    background-color: #343a40; /* Dark background color */
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  h2, h4 {
+    color: #ffffff; /* White text color */
+  }
+  
+  p {
+    color: #f0f0f0; /* Lighter text color */
+  }
+  

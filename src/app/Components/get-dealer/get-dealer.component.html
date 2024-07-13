@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+            alt="no-pic" height="170px" width="170px" srcset="">
+          <h2>Get Dealer's Information</h2>
+        </div>
+  
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="username" name="username" class="form-control" id="username" placeholder="">
+            <label for="username">Username</label>
+          </div>
+
+          <div class="row mb-3">
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+            Fields are missing. Please enter username.
+        </div>
+
+        
+        <div *ngIf="this.isDealerPresent === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+            Username not found. Please try with correct username.
+          </div>
+
+        <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Unexceptional error occured. Please try again!
+        </div>
+  
+        <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+            User fetched successfully.
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="container my-2" style="text-align: center;">
+            <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+                alt="no-pic" height="170px" width="170px" srcset="">
+        </div>
+        <h3 class="mb-4 text-center fs-4">Log In</h3>
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="credentials.username" class="form-control" id="username" name="username" placeholder="Dealer company name">
+            <label for="username">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" [(ngModel)]="credentials.password" class="form-control" id="password" name="password" placeholder="Password">
+            <label for="password">Password</label>
+          </div>
+          <div class="row mb-3">
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Fields are missing!
+        </div>
+  
+        <div *ngIf="this.isAuthorized === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+            Incorrect Password. Please enter correct password or contact admin!
+        </div>
+
+        <div *ngIf="this.isUserPresent === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Username not found. Please try with correct username.
+        </div>
+
+        <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Unexceptional error occured. Please try again!
+        </div>
+  
+    </div>
+  </div>
+</div>

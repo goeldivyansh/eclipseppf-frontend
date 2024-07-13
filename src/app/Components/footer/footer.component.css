@@ -1,0 +1,28 @@
+/* footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+} */
+
+footer {
+  background-color: #2F4F4F;
+  color: white;
+
+}
+
+/* footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+}
+.footer-fixed {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1030;
+  background-color: #f8f9fa; 
+}
+.content {
+  margin-bottom: 60px; 
+} */

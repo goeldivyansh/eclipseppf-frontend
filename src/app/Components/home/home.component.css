@@ -1,0 +1,27 @@
+.body {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color */
+    padding-top: 3rem;
+}
+
+.navbar-custom {
+    background-color: #1a1a1a; /* Darker navbar background */
+}
+
+.jumbotron-custom {
+    background-color: #333333; /* Slightly lighter section background */
+    color: #ffffff;
+}
+
+.feature-box {
+    background-color: #262626; /* Darker feature box background */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.footer-custom {
+    background-color: #1a1a1a; /* Dark footer background */
+    color: #cccccc;
+    padding: 2rem 0;
+}
