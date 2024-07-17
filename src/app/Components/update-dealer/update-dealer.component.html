@@ -1,1 +1,69 @@
-<p>update-dealer works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container" style="text-align: center;">
+          <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+            alt="no-pic" height="170px" width="170px" srcset="">
+          <h2>Update Dealer Information</h2>
+        </div>
+  
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="dealerInfo.username" name="username" class="form-control" id="username" placeholder="">
+            <label for="username">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="password" [(ngModel)]="dealerInfo.password" name="password" class="form-control" id="password" placeholder="">
+            <label for="password">Password</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="dealerInfo.name" name="name" class="form-control" id="name" placeholder="">
+            <label for="name">Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" [(ngModel)]="dealerInfo.address" name="address" class="form-control" id="address" placeholder="">
+            <label for="address">Address</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="number" [(ngModel)]="dealerInfo.mobile_no" name="mobile_no" class="form-control" id="mobile_no" placeholder="">
+            <label for="mobile_no">Mobile Number</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="email" [(ngModel)]="dealerInfo.email" name="email" class="form-control" id="email" placeholder="">
+            <label for="email">Email</label>
+          </div>
+          <div class="form-floating mb-3">
+            <select class="form-select" [(ngModel)]="dealerInfo.active" id="active" name="active" aria-label="Floating label select example">
+              <option selected>---</option>
+              <option value="true">Activate Dealer</option>
+              <option value="false">Deactivate Dealer</option>
+            </select>
+            <label for="floatingSelect">Activate/Deactivate Dealer</label>
+          </div>
+
+          <div class="row mb-3">
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="this.inValidMsg" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          {{this.inValidMsg}}
+        </div>
+  
+        <div *ngIf="this.isDealerPresent === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+            Dealer with username: {{this.dealerInfo.username}} is not present, Cannot update the dealer!
+        </div>
+
+        <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+            Unexceptional error occured. Please try again!
+        </div>
+  
+        <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+            User updated successfully!
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

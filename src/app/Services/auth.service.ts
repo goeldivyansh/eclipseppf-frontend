@@ -22,6 +22,16 @@ export class AuthService {
     console.log("Entering registerDealer | dealerInfo = ", options.dealerInfo);
     return this.resp = this.http.post(`${this.url}/auth/signup`, options.dealerInfo, { headers });
   }
+  
+  updateDealer(options: any){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': options.token
+    });
+
+    console.log("Entering updateDealer | dealerInfo = ", options.dealerInfo);
+    return this.resp = this.http.put(`${this.url}/user/${options.dealerInfo.username}/updateUser`, options.dealerInfo, { headers });
+  }
 
   dealerLogin(credentials: Object){
     console.log("Entering dealerLogin | credentials = ", credentials);
@@ -38,7 +48,7 @@ export class AuthService {
     return this.http.get(`${this.url}/user/${options.username}/getUser`, { headers });
   }
 
-  storeDealerDetails(dealerObj:object){
+  storeDealerDetails(dealerObj: object){
     localStorage.setItem("dealer",JSON.stringify(dealerObj));
     return true;
   }

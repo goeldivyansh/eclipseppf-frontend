@@ -20,13 +20,15 @@ import { RegisterWarrantyComponent } from './Components/register-warranty/regist
 import { RegisterDealerComponent } from './Components/register-dealer/register-dealer.component';
 import { ProductsComponent } from './Components/products/products.component';
 import { ContactComponent } from './Components/contact/contact.component';
-import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
 import { CheckWarrantyComponent } from './Components/check-warranty/check-warranty.component';
 import { GetDealerComponent } from './Components/get-dealer/get-dealer.component';
 import { UpdateDealerComponent } from './Components/update-dealer/update-dealer.component';
-import { DealerDashboardComponent } from './Components/dealer-dashboard/dealer-dashboard.component';
 import { SearchDealerCarsComponent } from './Components/search-dealer-cars/search-dealer-cars.component';
 import { MainComponent } from './Components/main/main.component';
+import { WarrantyCardComponent } from './Components/warranty-card/warranty-card.component';
+import { SearchAllCarsComponent } from './Components/search-all-cars/search-all-cars.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
+import { DealerInfoComponent } from './Components/dealer-info/dealer-info.component';
 
 @NgModule({
   declarations: [
@@ -40,13 +42,15 @@ import { MainComponent } from './Components/main/main.component';
     RegisterDealerComponent,
     ProductsComponent,
     ContactComponent,
-    AdminDashboardComponent,
     CheckWarrantyComponent,
     GetDealerComponent,
     UpdateDealerComponent,
-    DealerDashboardComponent,
     SearchDealerCarsComponent,
-    MainComponent
+    MainComponent,
+    WarrantyCardComponent,
+    SearchAllCarsComponent,
+    DashboardComponent,
+    DealerInfoComponent
   ],
   imports: [
     BrowserModule,

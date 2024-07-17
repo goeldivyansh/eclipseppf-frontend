@@ -1,0 +1,9 @@
+/* display-object.component.css */
+.card-header {
+  background-color: #007bff;
+  color: white;
+}
+
+.row {
+  margin-bottom: 10px;
+}

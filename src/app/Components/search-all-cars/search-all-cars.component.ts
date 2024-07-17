@@ -5,11 +5,11 @@ import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
 
 @Component({
-  selector: 'app-search-dealer-cars',
-  templateUrl: './search-dealer-cars.component.html',
-  styleUrls: ['./search-dealer-cars.component.css']
+  selector: 'app-search-all-cars',
+  templateUrl: './search-all-cars.component.html',
+  styleUrls: ['./search-all-cars.component.css']
 })
-export class SearchDealerCarsComponent {
+export class SearchAllCarsComponent {
   username: any | '';
   startdate: any | '';
   enddate: any | '';
@@ -18,23 +18,22 @@ export class SearchDealerCarsComponent {
   isEmpty: any | false;
   isInvalidRequest: any | false;
   isAnyCarPresent: any | true;
-  response: any;
-  dealerObj: any | {};
+  response: any | undefined;
 
-  constructor(private authService: AuthService, private carsService: CarsService, private router: Router) {
-    this.dealerObj = this.authService.getDealerFromLocal();
-    console.log('this.dealerObj: ', this.dealerObj);
-  }
+  constructor(private authService: AuthService, private carsService: CarsService, private router: Router) {}
   
   onSubmit()  {
     this.isInvalidRequest = false;
-    this.isEmpty = false;
     this.isAnyCarPresent = true;
     this.response = undefined;
 
     if (!this.recent && !(this.startdate && this.enddate)) {
       this.isEmpty = true;
     } else {
+      console.log('getDealerCars Response1 ', this.recent);
+      console.log('getDealerCars recentrecentonse2 ', this.startdate);
+      console.log('getDealerCars Responsewewr3 ', this.enddate);
+
       if (this.recent) {
         let oneDayTimeInMS = 24*60*60*1000;
         let recentTimeInMS;
@@ -49,10 +48,8 @@ export class SearchDealerCarsComponent {
         this.startdate = this.convertDateToEpoch(this.startdate);
       }
 
-      this.dealerObj = this.authService.getDealerFromLocal();
-      this.carsService.getDealerCars({
-        username: this.username || this.dealerObj.username,
-        token: this.dealerObj.token,
+      this.carsService.getAllCars({
+        token: this.authService.getDealerToken(),
         startdate: this.startdate,
         enddate: this.enddate,
       }).subscribe(
@@ -64,7 +61,7 @@ export class SearchDealerCarsComponent {
       
         },
         (error: any) => {
-          console.log("getDealerCars Error: ", error);
+          console.log("getAllCars Error: ", error);
           if (error.status === 404) {
             this.isAnyCarPresent = false;
           } else {
@@ -114,10 +111,4 @@ export class SearchDealerCarsComponent {
   
     return dateEpochTime;
   }  
-  
-  isAdmin() {
-    // this.dealerObj = this.authService.getDealerFromLocal();
-    return this.dealerObj.isAdmin;
-  }
-
 }

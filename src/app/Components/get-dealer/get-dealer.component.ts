@@ -25,14 +25,14 @@ export class GetDealerComponent {
     this.response = '';
 
     if (!this.username) {
-      this.isEmpty = true;
-      console.log("Fields are empty.")
+      this.isEmpty = 'Username is empty. Please fill to continue.';
     } else {
       this.authService.getDealerDetails({username: this.username, token: this.authService.getDealerToken()}).subscribe(
         (resp: any) => {
+          delete resp.modified;
+          delete resp.created;
           this.response = resp; 
           console.log("getDealerDetails resp: ", resp);
-          // Show Modal containg user details.
         },
         (error: any) => {
           console.log("getDealer Error: ", error);
@@ -44,5 +44,9 @@ export class GetDealerComponent {
         }
       );
     }
+  }
+
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
   }
 }

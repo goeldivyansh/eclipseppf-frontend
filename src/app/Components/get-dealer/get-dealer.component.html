@@ -20,23 +20,39 @@
           </div>
         </form>
         <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-            Fields are missing. Please enter username.
+          Username is empty. Please fill to continue.
         </div>
-
         
         <div *ngIf="this.isDealerPresent === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-            Username not found. Please try with correct username.
-          </div>
+          Dealer with username: {{this.username}} is not present.
+        </div>
 
         <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
           Unexceptional error occured. Please try again!
         </div>
   
         <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
-            User fetched successfully.
+          
+          <div class="container mt-5">
+            <div class="card">
+              <div class="card-header">
+                <h3>Dealer Details</h3>
+              </div>
+              <div class="card-body">
+                <div class="row" *ngFor="let key of objectKeys(this.response)">
+                  <div class="col-12 col-md-4">
+                    <strong>{{ key }}:</strong>
+                  </div>
+                  <div class="col-12 col-md-8">
+                    {{this.response[key]}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
         
       </div>
     </div>
   </div>
-  

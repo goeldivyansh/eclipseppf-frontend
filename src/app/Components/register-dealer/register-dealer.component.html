@@ -9,27 +9,49 @@
 
       <form (ngSubmit)="onSubmit()">
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="dealerInfo.username" name="username" class="form-control" id="username" placeholder="dealer company name" required="true">
+          <input type="text" [(ngModel)]="dealerInfo.username" name="username" class="form-control" id="username" placeholder="">
           <label for="username">Username</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="password" [(ngModel)]="dealerInfo.password" name="password" class="form-control" id="password" placeholder="password" required="true">
+          <input type="password" [(ngModel)]="dealerInfo.password" name="password" class="form-control" id="password" placeholder="">
           <label for="password">Password</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="dealerInfo.name" name="name" class="form-control" id="name" placeholder="full name" required="true">
+          <input type="text" [(ngModel)]="dealerInfo.name" name="name" class="form-control" id="name" placeholder="">
           <label for="name">Name</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="dealerInfo.address" name="address" class="form-control" id="address" placeholder="Hno, Street, City, State, Pincode" required="true">
+          <input type="text" [(ngModel)]="dealerInfo.address" name="address" class="form-control" id="address" placeholder="">
           <label for="address">Address</label>
         </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" [(ngModel)]="dealerInfo.city" name="city" class="form-control" id="city" placeholder="">
+              <label for="city">City</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" [(ngModel)]="dealerInfo.state" name="state" class="form-control" id="state" placeholder="">
+              <label for="state">State</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="number" [(ngModel)]="dealerInfo.pincode" name="pincode" class="form-control" id="pincode" placeholder="">
+              <label for="pincode">Pincode</label>
+            </div>
+          </div>
+        </div>
+        
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="dealerInfo.mobile_no" name="mobile_no" class="form-control" id="mobile_no" placeholder="9876543210" required="true">
+          <input type="number" [(ngModel)]="dealerInfo.mobile_no" name="mobile_no" class="form-control" id="mobile_no" placeholder="">
           <label for="mobile_no">Mobile Number</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="email" [(ngModel)]="dealerInfo.email" name="email" class="form-control" id="email" placeholder="name@example.com">
+          <input type="email" [(ngModel)]="dealerInfo.email" name="email" class="form-control" id="email" placeholder="">
           <label for="email">Email</label>
         </div>
         <div class="row mb-3">
@@ -38,16 +60,21 @@
           </div>
         </div>
       </form>
-      <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-        Fields are missing!
+
+      <div *ngIf="this.inValidMsg" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        {{this.inValidMsg}}
       </div>
 
       <div *ngIf="this.isAlreadyPresent" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-          Dealer with same username is already present, Please try with different one!
+        Dealer with same username: {{this.dealerInfo.username}} is already present.
+      </div>
+      
+      <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        Unexceptional error occured. Please try again!
       </div>
 
       <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
-          User registered successfully!
+        Dealer: {{this.dealerInfo.username}} registered successfully!
       </div>
       
     </div>

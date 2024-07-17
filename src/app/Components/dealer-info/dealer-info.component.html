@@ -1,0 +1,63 @@
+<!-- <div class="row" *ngFor="let key of objectKeys(dealerObj)">
+  <div class="col-12 col-md-4">
+    <strong>{{ key }}:</strong>
+  </div>
+  <div class="col-12 col-md-8">
+    {{dealerObj[key]}}
+  </div>  
+</div> -->
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="text-center card-header">
+          <h2 class="mb-0">Welcome {{ dealerObj.name }}!</h2>
+        </div>
+        <div class="card-body">
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Username:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ dealerObj.username }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Name:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ dealerObj.name }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Email:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ dealerObj.email }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Mobile Number:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ dealerObj.mobile_no }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Address:</strong>
+            </div>
+            <div class="col-md-8">
+              <div>{{ dealerObj.address }}</div>
+              <div>{{ dealerObj.city }}, {{ dealerObj.state }} - {{ dealerObj.pincode }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

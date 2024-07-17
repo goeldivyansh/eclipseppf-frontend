@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+            alt="no-pic" height="170px" width="170px" srcset="">
+          <h2>Search all cars</h2>
+        </div>
+  
+        <form (ngSubmit)="onSubmit()">
+  
+          <div class="form-floating mb-3">
+            <select class="form-select" [(ngModel)]="recent" id="recent" name="recent" aria-label="Floating label select example">
+              <!-- <option selected>---</option> -->
+              <option value="1D">1 Day</option>
+              <option value="1W">1 Week</option>
+              <option value="1M">1 Month</option>
+            </select>
+            <label for="floatingSelect">Recent</label>
+          </div>
+  
+          <div class="form-floating mb-3">
+            <input type="date" [(ngModel)]="startdate" class="form-control" id="startdate" name="startdate" placeholder="">
+            <label for="startdate">From</label>
+          </div>
+         
+          <div class="form-floating mb-3">
+            <input type="date" [(ngModel)]="enddate" class="form-control" id="enddate" name="enddate" placeholder="">
+            <label for="enddate">To</label>
+          </div>
+         
+          <div class="row mb-3">
+            <div class="text-center">
+              <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </form>
+        <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Either recent or startdate and endate are required to search.
+        </div>
+  
+        <div *ngIf="this.isAnyCarPresent === false" class="alert alert-warning rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          No car ppf roll warranty registered in the mentioned time!
+        </div>
+        
+        <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Unexceptional error occured. Please try again!
+        </div>
+  
+        <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+          Ppf cars fetched successfully.
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  

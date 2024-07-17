@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 import { CarsService } from '../../Services/cars.service';
@@ -10,12 +10,17 @@ import { AuthService } from '../../Services/auth.service';
   styleUrls: ['./register-warranty.component.css']
 })
 export class RegisterWarrantyComponent {
+  // @ViewChild('warrantyCardModal') warrantyCardModal!: WarrantyCardComponent;
+
   ppfRollInfo = {
     quantity: '',
     roll_no: '',
     customer: {
       name: '',
       address: '',
+      city: '',
+      state: '',
+      pincode: '',
       mobile_no: '',
       email: '',
     },
@@ -30,7 +35,6 @@ export class RegisterWarrantyComponent {
   isInvalidRequest: any | false;
   isAlreadyPresent: any | false;
   response: any | undefined;
-  isAuthorized: any | true;
   dealerObj: any;
   // response: any | undefined;
 
@@ -39,6 +43,7 @@ export class RegisterWarrantyComponent {
   onSubmit() {
     this.isAlreadyPresent = false;
     this.isInvalidRequest = false;
+    this.response = false;
     this.isEmpty = this.inputValidation(this.ppfRollInfo);
 
     if (this.isEmpty) {
@@ -77,13 +82,18 @@ export class RegisterWarrantyComponent {
 
   inputValidation(obj: any) {
     console.log(obj);
+    return false;
     if (
-      obj.name === '' ||
-      obj.username === '' ||
-      obj.password === '' ||
-      obj.address === '' ||
-      obj.mobile_number === '' ||
-      obj.email === ''
+      !obj.quantity || obj.roll_no === '' ||
+      obj.customer.name === '' ||
+      obj.customer.address === '' ||
+      obj.customer.city === '' ||
+      obj.customer.state === '' ||
+      !obj.customer.pincode || !obj.customer.mobile_number ||
+      obj.customer.email === '' || 
+      obj.car_details.car_no === '' ||
+      !obj.car.mfd_year ||
+      obj.car.model_name === ''
     ) {
       return true;
     }

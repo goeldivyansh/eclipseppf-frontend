@@ -42,13 +42,4 @@ export class NavbarComponent {
      //Route to dashboard page 
     this.router.navigate(['/']);
   } 
-
-  toggleSidenav() {
-    // Toggle sidenav open/close state
-    // Example: using Angular Material's ViewChild
-    // import { ViewChild } from '@angular/core';
-    // import { MatSidenav } from '@angular/material/sidenav';
-    // @ViewChild('sidenav') sidenav: MatSidenav;
-    // this.sidenav.toggle();
-  }
 }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CarsService {
   userObj: any | null;
   user: any | null;
@@ -44,7 +45,6 @@ export class CarsService {
     return this.resp = this.http.get(`${this.url}/carppf/${options.username}/warranty`, {params, headers });
   }
 
-
   getDealerCars(options: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -58,5 +58,19 @@ export class CarsService {
     
     console.log("Entering getDealerCars = ", options);
     return this.resp = this.http.get(`${this.url}/carppf/${options.username}/getMyCars`, {params, headers});
+  }
+
+  getAllCars(options: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': options.token
+    });
+
+    let params = new HttpParams()
+      .set('startdate', options.startdate)
+      .set('enddate', options.enddate);
+    
+    console.log("Entering getAllCars = ", options);
+    return this.resp = this.http.get(`${this.url}/carppf/getAllCars`, {params, headers});
   }
 }

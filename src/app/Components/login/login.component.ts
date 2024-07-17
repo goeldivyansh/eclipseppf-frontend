@@ -20,6 +20,7 @@ export class LoginComponent {
   };
 
   isEmpty: any | false;
+  isAuthenticated: any | true;
   isAuthorized: any | true;
   isUserPresent: any | true;
   // response: any | undefined;
@@ -29,6 +30,7 @@ export class LoginComponent {
   
   onSubmit()  {
     this.isEmpty = false;
+    this.isAuthenticated = true;
     this.isAuthorized = true;
     this.isUserPresent = true;
     this.isInvalidRequest = false;
@@ -47,23 +49,20 @@ export class LoginComponent {
         (response: any) => {
           console.log("Login Response: ", response);
 
-          this.isAuthorized = true;
+          this.isAuthenticated = true;
 
           // Store user in local storage & naviagate to dashboard
-          if (response.username === this.ADMIN_USERNAME) {
-            response.isAdmin = true;
-            this.authService.storeDealerDetails(response);
-            this.router.navigate(['/admin-dashboard']);
-          } else {
-            this.authService.storeDealerDetails(response);
-            this.router.navigate(['/dashboard']);
-          }
+          if (response.username === this.ADMIN_USERNAME) { response.isAdmin = true; }
+          this.authService.storeDealerDetails(response);
+          this.router.navigate(['/dashboard']);
         },
         (error) => {
           console.log("Login Error: ", error);
           if (error.status === 404) {
             this.isUserPresent = false;
           } else if (error.status === 401) {
+            this.isAuthenticated = false;
+          } else if (error.status === 403) {
             this.isAuthorized = false;
           } else {
             this.isInvalidRequest = true;

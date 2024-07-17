@@ -26,8 +26,12 @@
           Fields are missing!
         </div>
   
+        <div *ngIf="this.isAuthenticated === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+          Incorrect Password. Please enter correct password or contact admin!
+        </div>
+        
         <div *ngIf="this.isAuthorized === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-            Incorrect Password. Please enter correct password or contact admin!
+          Your account is deactivated. Please contact admin!
         </div>
 
         <div *ngIf="this.isUserPresent === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >

@@ -1,161 +1,105 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="container" style="text-align: center;">
-          <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
-            alt="no-pic" height="170px" width="170px" srcset="">
-          <h2>Register PPF Roll Warranty</h2>
+  <div class="row mx-auto">
+    <div class="col-md-6 offset-md-3">
+      <div class="container" style="text-align: center;">
+        <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
+          alt="no-pic" height="170px" width="170px" srcset="">
+        <h2>Register PPF Roll Warranty</h2>
+      </div>
+      
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-floating mb-3">
+          <input type="number" [(ngModel)]="ppfRollInfo.quantity" class="form-control" id="quantity" name="quantity" placeholder="">
+          <label for="quantity">Quantity Consumed (sqft)</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.roll_no" id="rollNo" name="rollNo" placeholder="">
+          <label for="rollNo">PPF Roll No</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.name" id="customerName" name="customerName"  placeholder="">
+          <label for="customerName">Customer Name</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.address" id="customerAddress" name="customerAddress" placeholder="">
+          <label for="customerAddress">Customer Address</label>
+        </div>
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.city" id="city" name="city" placeholder="">
+              <label for="city">Customer City</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.state" id="state" name="state" placeholder="">
+              <label for="state">Customer State</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" [(ngModel)]="ppfRollInfo.customer.pincode" id="city" name="city" placeholder="">
+              <label for="city">Customer Pincode</label>
+            </div>
+          </div>
         </div>
         
-        <!-- <form>
-          <div class="row mb-3">
-            <label for="date" class="col-sm-3 col-form-label">Date of Application</label>
-            <div class="col-sm-9">
-              <input type="date" [(ngModel)]="ppfRollInfo.date" class="form-control" id="date" name="date" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="quantity" class="col-sm-3 col-form-label">Quantity Consumed (sqft)</label>
-            <div class="col-sm-9">
-              <input type="number" [(ngModel)]="ppfRollInfo.quantity" class="form-control" id="quantity" name="quantity" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="rollNo" class="col-sm-3 col-form-label">PPF Roll No</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.roll_no" id="rollNo" name="rollNo" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="customerName" class="col-sm-3 col-form-label">Customer Name</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.name" id="customerName" name="customerName" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="customerAddress" class="col-sm-3 col-form-label">Customer Address</label>
-            <div class="col-sm-9">
-              <textarea class="form-control" [(ngModel)]="ppfRollInfo.customer.address" id="customerAddress" name="customerAddress" rows="3" required></textarea>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="customerMobile" class="col-sm-3 col-form-label">Customer Mobile No</label>
-            <div class="col-sm-9">
-              <input type="tel" class="form-control" [(ngModel)]="ppfRollInfo.customer.mobile_no" id="customerMobile" name="customerMobile" pattern="[0-9]{10}" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="customerEmail" class="col-sm-3 col-form-label">Customer Email Id</label>
-            <div class="col-sm-9">
-              <input type="email" [(ngModel)]="ppfRollInfo.customer.email" class="form-control" id="customerEmail" name="customerEmail" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="carNo" class="col-sm-3 col-form-label">Car No / Chassis No</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.car_no" id="carNo" name="carNo" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="make" class="col-sm-3 col-form-label">Make / Year</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.mfd_year" id="make" name="make" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="model" class="col-sm-3 col-form-label">Model</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.model_name" id="model" name="model" required>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <label for="photos" class="col-sm-3 col-form-label">6 Photographs Upload</label>
-            <div class="col-sm-9">
-              <input type="file" class="form-control" [(ngModel)]="ppfRollInfo.car_details.photos" id="photos" name="photos" accept="image/*" multiple>
-              <div class="form-text">Upload up to 6 photographs.</div>
-            </div>
-          </div>
-    
-          <div class="row mb-3">
-            <div class="col-sm-9 offset-sm-3">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </form> -->
-
-        <form (ngSubmit)="onSubmit()">
-          <!-- <div class="form-floating mb-3">
-            <input type="date" [(ngModel)]="ppfRollInfo.date" class="form-control" id="date" name="date" placeholder="">
-            <label for="date">Date of Application</label>
-          </div> -->
-          <div class="form-floating mb-3">
-            <input type="number" [(ngModel)]="ppfRollInfo.quantity" class="form-control" id="quantity" name="quantity" placeholder="" required>
-            <label for="quantity">Quantity Consumed (sqft)</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.roll_no" id="rollNo" name="rollNo" placeholder="" required>
-            <label for="rollNo">PPF Roll No</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.name" id="customerName" name="customerName"  placeholder="" required>
-            <label for="customerName">Customer Name</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.customer.address" id="customerAddress" name="customerAddress" rows="3" placeholder="" required>
-            <label for="customerAddress">Customer Address</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="tel" class="form-control" [(ngModel)]="ppfRollInfo.customer.mobile_no" id="customerMobile" name="customerMobile" pattern="[0-9]{10}" placeholder="" required>
-            <label for="customerMobile">Customer Mobile No</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="email" [(ngModel)]="ppfRollInfo.customer.email" class="form-control" id="customerEmail" name="customerEmail"  placeholder="" required>
-            <label for="customerEmail">Customer Email Id</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.car_no" id="carNo" name="carNo"  placeholder="" required>
-            <label for="carNo">Car No / Chassis No</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.mfd_year" id="make" name="make" placeholder="" required>
-            <label for="make">Make / Year</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.model_name" id="model" name="model" placeholder="" required>
-            <label for="model">Model</label>
-          </div>
-          <div class="form-floating mb-3">
-            <input type="file" class="form-control" [(ngModel)]="ppfRollInfo.car_details.photos" id="photos" name="photos" accept="image/*" multiple>
-            <label for="photos">6 Photographs Upload</label>
-          </div>
-
-          <div class="row mb-3">
-            <div class="text-center">
-              <button type="submit" class="btn btn-success">Submit</button>
-            </div>
-          </div>
-        </form>
-        <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-          Fields are missing!
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" [(ngModel)]="ppfRollInfo.customer.mobile_no" id="customerMobile" name="customerMobile" pattern="[0-9]{10}" placeholder="">
+          <label for="customerMobile">Customer Mobile No</label>
         </div>
-  
-        <!-- <div *ngIf="this.isAuthorized === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-          Incorrect Password. Please enter correct password or contact admin!
-        </div> -->
-
-        <div *ngIf="this.isAlreadyPresent" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-          Warranty is already registered for this ppf roll number.
+        <div class="form-floating mb-3">
+          <input type="email" [(ngModel)]="ppfRollInfo.customer.email" class="form-control" id="customerEmail" name="customerEmail"  placeholder="">
+          <label for="customerEmail">Customer Email Id</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.car_no" id="carNo" name="carNo"  placeholder="">
+          <label for="carNo">Car No / Chassis No</label>
         </div>
 
-        <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-          Unexceptional error occured. Please try again!
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="number" class="form-control" [(ngModel)]="ppfRollInfo.car_details.mfd_year" id="make" name="make" placeholder="">
+              <label for="make">Make / Year</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" [(ngModel)]="ppfRollInfo.car_details.model_name" id="model" name="model" placeholder="">
+              <label for="model">Model</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="file" class="form-control" [(ngModel)]="ppfRollInfo.car_details.photos" id="photos" name="photos" accept="image/*" multiple>
+          <label for="photos">6 Photographs Upload</label>
         </div>
 
-        <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
-          Warranty registered successfully!
+        <div class="row mb-3">
+          <div class="text-center">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
         </div>
-
+      </form>
+      <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        Fields are missing!
       </div>
+
+      <div *ngIf="this.isAlreadyPresent" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        Warranty is already registered for this ppf roll number.
+      </div>
+
+      <div *ngIf="this.isInvalidRequest" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        Unexceptional error occured. Please try again!
+      </div>
+
+      <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+        Warranty registered successfully!
+      </div>
+
     </div>
   </div>
-  
+</div>

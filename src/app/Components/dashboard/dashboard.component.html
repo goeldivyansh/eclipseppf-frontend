@@ -1,0 +1,79 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showDealerInfoComponent}" (click) = "toggleDealerInfoComponent()">Welcome!</a>
+    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterDealerComponent}" *ngIf="isAdmin()" (click) = "toggleRegisterDealerComponent()">Register Dealer</a>
+    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterWarrantyComponent}" (click) = "toggleRegisterWarrantyComponent()">Register Warranty</a>
+    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showCheckWarrantyComponent}" (click) = "toggleCheckWarrantyComponent()">Check Warranty</a>
+
+    <a class="btn btn-light border-primary mx-1 my-1" *ngIf="isAdmin()" [ngClass]="{'active': this.showUpdateDealerComponent}" type="text/html" (click) = "toggleUpdateDealerComponent()">Update Dealer Info</a>
+    <a class="btn btn-light border-primary mx-1 my-1" *ngIf="isAdmin()" [ngClass]="{'active': this.showGetDealerComponent}" type="text/html" (click) = "toggleGetDealerComponent()">Get Dealer Info</a>
+
+    
+    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showSearchDealerCarComponent}" (click) = "toggleSearchDealerCarComponent()">Search Dealer's cars</a>
+    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showSearchAllCarComponent}" *ngIf="isAdmin()" (click) = "toggleSearchAllCarComponent()">Search all cars</a>
+
+  </div>
+</nav>
+
+<!-- <app-dealer-info *ngIf="toggleDealerInfoComponent()"></app-dealer-info> -->
+
+<div class="container">
+  <div *ngIf="this.showDealerInfoComponent">
+    <app-dealer-info></app-dealer-info>
+  </div>
+  <div *ngIf="this.showRegisterDealerComponent && isAdmin()">
+    <app-register-dealer></app-register-dealer>
+  </div>
+  <div *ngIf="this.showRegisterWarrantyComponent">
+    <app-register-warranty></app-register-warranty>
+  </div>
+  <div *ngIf="this.showCheckWarrantyComponent">
+    <app-check-warranty></app-check-warranty>
+  </div>
+  <div *ngIf="this.showUpdateDealerComponent && isAdmin()">
+    <app-update-dealer></app-update-dealer>
+  </div>
+  <div *ngIf="this.showGetDealerComponent && isAdmin()">
+    <app-get-dealer></app-get-dealer>
+  </div>
+  <div *ngIf="this.showSearchDealerCarComponent">
+    <app-search-dealer-cars></app-search-dealer-cars>
+  </div>
+  <div *ngIf="this.showSearchAllCarComponent && isAdmin()">
+    <app-search-all-cars></app-search-all-cars>
+  </div>
+  
+</div>
+
+<div class="container">
+  <h1 class="my-2">Recent registered cars</h1>
+  <table class="table">
+    <thead>      
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Registration Time</th>
+        <th scope="col">Roll No</th>
+        <th scope="col">Car No</th>
+        <th scope="col">Valid Upto</th>
+        <th scope="col">Warranty Card</th>
+        <th scope="col">Car Photos</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  

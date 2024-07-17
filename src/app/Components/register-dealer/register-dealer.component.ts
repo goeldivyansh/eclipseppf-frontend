@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-// import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
 
 @Component({
@@ -14,60 +12,84 @@ export class RegisterDealerComponent {
     username: '',
     password: '',
     address: '',
+    state: '',
+    city: '', 
+    pincode: '',
     mobile_no: '',
-    email: ''
+    email: '',
+    
   };
-  isEmpty: any | false;
-  isInvalid: any | false;
+  isInvalidRequest: any | false;
   isAlreadyPresent: any | false;
   response: any | undefined;
+  inValidMsg: any | '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
   
   onSubmit()  {
-    this.isInvalid = false;
+    this.isInvalidRequest = false;
     this.isAlreadyPresent = false;
-    this.isEmpty = this.inputValidation(this.dealerInfo);
+    this.response = undefined;
+    this.inValidMsg = '';
 
-    if (this.isEmpty) {
-      this.isEmpty = true;
-      console.log("Fields are empty")
-    } else {
+    this.inValidMsg = this.inputValidation(this.dealerInfo);
+
+    if (!this.inValidMsg) {
       this.authService.registerDealer({dealerInfo: this.dealerInfo, token: this.authService.getDealerToken()}).subscribe(
         (resp: any) => {
           this.response = resp;
-          console.log('registerDealer Response', resp);
-          console.log('registerDealer this.response', this.response);
-          this.isAlreadyPresent = false;
-          this.isInvalid = false;
-
-          // Show popup user registered successfully
-          
+          console.log('registerDealer response', this.response);
         },
         (error: any) => {
           console.log("registerDealer Error: ", error);
           if (error.status === 406) {
-            this.isAlreadyPresent = true; //todo decide on errcode.
+            this.isAlreadyPresent = true;
           } else {
-            this.isInvalid = true;
+            this.isInvalidRequest = true;
           }
         }
       );
     }
-
   }
+
   inputValidation(obj: any) {
-    console.log(obj);
-    if (
-      obj.name === '' ||
-      obj.username === '' ||
-      obj.password === '' ||
-      obj.address === '' ||
-      obj.mobile_no === '' ||
-      obj.email === ''
-    ) {
-      return true;
+    let msg = '';
+    if (obj.username === '') {
+      msg = 'Username is empty. Please fill to continue.';
+    } else if(obj.username.indexOf(' ') >= 0) {
+      msg = 'Whitespace are not allowed in username';
+    } else if (obj.password === '') {
+      msg = 'Password is empty. Please fill to continue.'
+    // } else if(obj.password.match(/^ *$/) !== null) {
+    } else if(obj.password.indexOf(' ') >= 0) {
+      msg = 'Whitespace are not allowed in password';
+    }  else if (obj.name === '') {
+      msg = 'Name is empty. Please fill to continue.'
+    }  else if (obj.address === '') {
+      msg = 'Address is empty. Please fill to continue.'
+    } else if (obj.state === '') {
+      msg = 'State is empty. Please fill to continue.'
+    } else if (obj.city === '') {
+      msg = 'City is empty. Please fill to continue.'
+    } else if (obj.pincode === '') {
+      msg = 'Pincode is empty. Please fill to continue.'
+    } else if(!Number.isInteger(obj.pincode)) {
+      msg = 'Invalid pincode. Please enter valid pincode.'
+    } else if (obj.mobile_no === '') {
+      msg = 'Mobile number is empty. Please fill to continue.'
+    } else if(!Number.isInteger(obj.mobile_no)) {
+      msg = 'Invalid mobile no. Please enter valid mobile number.'
+    } else if (obj.email === '') {
+      msg = 'Email is empty. Please fill to continue.'
+    } else if(!this.validateEmail(obj.email)) {
+      msg = 'Invalid email. Please enter correct email.'
     }
-    return false;
+
+    return msg;
   };
+  
+  validateEmail(email: string) {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+  }
 }

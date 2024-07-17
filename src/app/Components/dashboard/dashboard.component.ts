@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+// import { FormsModule } from '@angular/forms';
+import { CarsService } from '../../Services/cars.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class AdminDashboardComponent {
 
+
+export class DashboardComponent {
+
+  showDealerInfoComponent: any | true;
   showRegisterDealerComponent: any | false;
   showRegisterWarrantyComponent: any | false;
   showCheckWarrantyComponent: any | false;
@@ -14,14 +21,15 @@ export class AdminDashboardComponent {
   showGetDealerComponent: any | false;
   showSearchDealerCarComponent: any | false;
   showSearchAllCarComponent: any | false;
+  
+  dealerObj: any | {};
 
-  tableData = [
-    { col1: 'Value 1', col2: 'Value 2', col3: 'Value 3', col4: 'Value 4', col5: 'Value 5' },
-    { col1: 'Value 1', col2: 'Value 2', col3: 'Value 3', col4: 'Value 4', col5: 'Value 5' },
-    { col1: 'Value 1', col2: 'Value 2', col3: 'Value 3', col4: 'Value 4', col5: 'Value 5' },
-    { col1: 'Value 1', col2: 'Value 2', col3: 'Value 3', col4: 'Value 4', col5: 'Value 5' },
-    { col1: 'Value 1', col2: 'Value 2', col3: 'Value 3', col4: 'Value 4', col5: 'Value 5' }
-  ];
+  constructor(private authService: AuthService, private carsService: CarsService, private router: Router) {
+    this.dealerObj = this.authService.getDealerFromLocal();
+    this.showDealerInfoComponent = true;
+    console.log('this.dealerObj: ', this.dealerObj);
+  }
+  
 
   performOperation(operation: string, rowData: any) {
     // Implement your operation logic here
@@ -29,7 +37,19 @@ export class AdminDashboardComponent {
     // Yo
   }
 
+  toggleDealerInfoComponent() {
+    this.showDealerInfoComponent = !this.showDealerInfoComponent;
+    this.showRegisterDealerComponent = false;
+    this.showRegisterWarrantyComponent = false;
+    this.showCheckWarrantyComponent = false;
+    this.showUpdateDealerComponent = false;
+    this.showGetDealerComponent = false;
+    this.showSearchDealerCarComponent = false;
+    this.showSearchAllCarComponent = false;
+  }
+
   toggleRegisterDealerComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = !this.showRegisterDealerComponent;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -39,6 +59,8 @@ export class AdminDashboardComponent {
     this.showSearchAllCarComponent = false;
   }
   toggleRegisterWarrantyComponent() {
+    console.log('toggleRegisterWarrantyComponent clicked: ', this.showRegisterWarrantyComponent);
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = !this.showRegisterWarrantyComponent;
     this.showCheckWarrantyComponent = false;
@@ -46,8 +68,10 @@ export class AdminDashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
+    console.log('toggleRegisterWarrantyComponent clicked 2: ', this.showRegisterWarrantyComponent);
   }
   toggleCheckWarrantyComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = !this.showCheckWarrantyComponent;
@@ -57,8 +81,8 @@ export class AdminDashboardComponent {
     this.showSearchAllCarComponent = false;
   }
 
- 
   toggleUpdateDealerComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -68,6 +92,7 @@ export class AdminDashboardComponent {
     this.showSearchAllCarComponent = false;
   }
   toggleGetDealerComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -76,7 +101,9 @@ export class AdminDashboardComponent {
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
   }
+
   toggleSearchDealerCarComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -85,7 +112,9 @@ export class AdminDashboardComponent {
     this.showSearchDealerCarComponent = !this.showSearchDealerCarComponent;
     this.showSearchAllCarComponent = false;
   }
+
   toggleSearchAllCarComponent() {
+    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -93,6 +122,11 @@ export class AdminDashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = !this.showSearchAllCarComponent;
+  }
+
+  isAdmin() {
+    // this.dealerObj = this.authService.getDealerFromLocal();
+    return this.dealerObj.isAdmin;
   }
 
 }

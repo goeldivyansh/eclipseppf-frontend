@@ -7,8 +7,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { ContactComponent } from './Components/contact/contact.component';
 // import { RegisterDealerComponent } from './Components/register-dealer/register-dealer.component';
 // import { RegisterWarrantyComponent } from './Components/register-warranty/register-warranty.component';
-import { DealerDashboardComponent } from './Components/dealer-dashboard/dealer-dashboard.component';
-import { AdminDashboardComponent } from './Components/admin-dashboard/admin-dashboard.component';
+import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { MainComponent } from './Components/main/main.component';
 
 const routes: Routes = [
@@ -19,8 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'register-dealer', component: RegisterDealerComponent },
   // { path: 'register-warranty', component: RegisterWarrantyComponent },
-  { path: 'dashboard', component: DealerDashboardComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'main', component: MainComponent },
 ];
 
