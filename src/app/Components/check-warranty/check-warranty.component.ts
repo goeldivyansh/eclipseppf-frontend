@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-check-warranty',
@@ -17,7 +18,8 @@ export class CheckWarrantyComponent {
   isNotPresent: any | false;
   dealerObj: any | {};
 
-  constructor(private carsService: CarsService,private authService: AuthService, private router: Router) {}
+  constructor(private carsService: CarsService,private authService: AuthService,
+    private utilityService: UtilityService, private router: Router) {}
   
   onSubmit()  {
     this.isEmpty = false;
@@ -29,7 +31,7 @@ export class CheckWarrantyComponent {
       this.isEmpty = true;
     }
     else {
-      this.dealerObj = this.authService.getDealerFromLocal();
+      this.dealerObj = this.utilityService.getDealerFromLocal();
 
       this.carsService.getWarranty({
         roll_no: this.roll_no,
@@ -40,7 +42,7 @@ export class CheckWarrantyComponent {
         (resp: any) => {
           delete resp.created;
           this.response = resp; 
-          resp.application_date = this.epochToDate(resp.application_date);
+          resp.application_date = this.utilityService.epochToDate(resp.application_date);
           console.log('this.response:', this.response);
           // Show Modal containg warranty details.
         },
@@ -64,16 +66,4 @@ export class CheckWarrantyComponent {
     return value !== null && typeof value === 'object';
   }
 
-  epochToDate(epoch: number) {
-    // Convert epoch to milliseconds and create a new Date object
-    const date = new Date(epoch);
-  
-    // Extract day, month, and year
-    const day = ('0' + date.getDate()).slice(-2); // Add leading zero if needed
-    const month = ('0' + (date.getMonth() + 1)).slice(-2); // Add leading zero and month is 0-indexed
-    const year = date.getFullYear();
-  
-    // Format date as 'DD-MM-YYYY'
-    return `${day}-${month}-${year}`;
-  }
 }

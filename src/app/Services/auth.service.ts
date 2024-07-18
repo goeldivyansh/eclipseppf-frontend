@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class AuthService {
   url = 'http://localhost:3000';
   resp: any;
 
-  constructor(private http:HttpClient, private router: Router) {}
+  constructor(private http:HttpClient) {}
 
   registerDealer(options: any){
     let headers = new HttpHeaders({
@@ -33,8 +32,8 @@ export class AuthService {
     return this.resp = this.http.put(`${this.url}/user/${options.dealerInfo.username}/updateUser`, options.dealerInfo, { headers });
   }
 
-  dealerLogin(credentials: Object){
-    console.log("Entering dealerLogin | credentials = ", credentials);
+  loginDealer(credentials: Object){
+    console.log("Entering loginDealer | credentials = ", credentials);
     return this.resp = this.http.post(`${this.url}/auth/login`, credentials);
   }
   
@@ -48,31 +47,31 @@ export class AuthService {
     return this.http.get(`${this.url}/user/${options.username}/getUser`, { headers });
   }
 
-  storeDealerDetails(dealerObj: object){
-    localStorage.setItem("dealer",JSON.stringify(dealerObj));
-    return true;
-  }
+  // storeDealerDetails(dealerObj: object){
+  //   localStorage.setItem("dealer",JSON.stringify(dealerObj));
+  //   return true;
+  // }
 
-  isLoggedIn(){
-    let dealer = localStorage.getItem("dealer");
-    if(dealer == undefined || dealer == null || dealer === ""){
-      return false;
-    }
-    return true;
-  }
+  // isLoggedIn(){
+  //   let dealer = localStorage.getItem("dealer");
+  //   if(dealer == undefined || dealer == null || dealer === ""){
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
-  getDealerFromLocal() {
-    this.dealer = localStorage.getItem("dealer");
-    return JSON.parse(this.dealer);
-  }
+  // getDealerFromLocal() {
+  //   this.dealer = localStorage.getItem("dealer");
+  //   return JSON.parse(this.dealer);
+  // }
 
-  logout(){
-    localStorage.removeItem("dealer");
-    return true;
-  }
+  // logout(){
+  //   localStorage.removeItem("dealer");
+  //   return true;
+  // }
 
-  getDealerToken(){
-    this.dealerObj = localStorage.getItem("dealer");
-    return (JSON.parse(this.dealerObj)).token;
-  }
+  // getDealerToken(){
+  //   this.dealerObj = localStorage.getItem("dealer");
+  //   return (JSON.parse(this.dealerObj)).token;
+  // }
 }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +25,12 @@ export class DashboardComponent {
   
   dealerObj: any | {};
 
-  constructor(private authService: AuthService, private carsService: CarsService, private router: Router) {
-    this.dealerObj = this.authService.getDealerFromLocal();
+  warrantyInfoArr: object | any;
+  
+
+  constructor(private authService: AuthService, private carsService: CarsService,
+    private utilityService: UtilityService, private router: Router) {
+    this.dealerObj = this.utilityService.getDealerFromLocal();
     this.showDealerInfoComponent = true;
     console.log('this.dealerObj: ', this.dealerObj);
   }
@@ -91,6 +96,7 @@ export class DashboardComponent {
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
   }
+
   toggleGetDealerComponent() {
     this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;

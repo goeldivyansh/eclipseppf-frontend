@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-dealer-info',
@@ -10,8 +11,8 @@ export class DealerInfoComponent {
 
   dealerObj: any | {};
 
-  constructor(private authService: AuthService) {
-    this.dealerObj = this.authService.getDealerFromLocal();
+  constructor(private authService: AuthService, private utilityService: UtilityService,) {
+    this.dealerObj = this.utilityService.getDealerFromLocal();
     delete this.dealerObj.created;
     delete this.dealerObj.modified;
     delete this.dealerObj.token;

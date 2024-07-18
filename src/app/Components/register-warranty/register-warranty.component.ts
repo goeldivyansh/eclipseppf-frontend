@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-register-warranty',
@@ -38,7 +39,8 @@ export class RegisterWarrantyComponent {
   dealerObj: any;
   // response: any | undefined;
 
-  constructor(private carsService: CarsService, private authService: AuthService, private router: Router) {}
+  constructor(private carsService: CarsService, private authService: AuthService,
+    private utilityService: UtilityService, private router: Router) {}
   
   onSubmit() {
     this.isAlreadyPresent = false;
@@ -51,7 +53,7 @@ export class RegisterWarrantyComponent {
       console.log("Fields are empty")
     } else {
       // Fetch dealer from local storage
-      this.dealerObj = this.authService.getDealerFromLocal();
+      this.dealerObj = this.utilityService.getDealerFromLocal();
 
       this.carsService.registerCarPpfWarranty({
         username: this.dealerObj.username,

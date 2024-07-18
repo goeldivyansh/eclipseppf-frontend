@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-register-dealer',
@@ -24,7 +25,7 @@ export class RegisterDealerComponent {
   response: any | undefined;
   inValidMsg: any | '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private utilityService: UtilityService) {}
   
   onSubmit()  {
     this.isInvalidRequest = false;
@@ -35,7 +36,7 @@ export class RegisterDealerComponent {
     this.inValidMsg = this.inputValidation(this.dealerInfo);
 
     if (!this.inValidMsg) {
-      this.authService.registerDealer({dealerInfo: this.dealerInfo, token: this.authService.getDealerToken()}).subscribe(
+      this.authService.registerDealer({dealerInfo: this.dealerInfo, token: this.utilityService.getDealerToken()}).subscribe(
         (resp: any) => {
           this.response = resp;
           console.log('registerDealer response', this.response);

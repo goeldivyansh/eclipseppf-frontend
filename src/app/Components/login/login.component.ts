@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-// import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
-// import { globals } from '../../../globals';
-// import { globals } from '../../../globalsJSON.json';
-// require('dotenv').config();
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +23,7 @@ export class LoginComponent {
   // response: any | undefined;
   isInvalidRequest: any | false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private utilityService: UtilityService,) {}
   
   onSubmit()  {
     this.isEmpty = false;
@@ -45,7 +42,7 @@ export class LoginComponent {
       this.isEmpty = false;
 
       // Send login request
-      this.authService.dealerLogin(this.credentials).subscribe(
+      this.authService.loginDealer(this.credentials).subscribe(
         (response: any) => {
           console.log("Login Response: ", response);
 
@@ -53,7 +50,7 @@ export class LoginComponent {
 
           // Store user in local storage & naviagate to dashboard
           if (response.username === this.ADMIN_USERNAME) { response.isAdmin = true; }
-          this.authService.storeDealerDetails(response);
+          this.utilityService.storeDealerDetailsInLocal(response);
           this.router.navigate(['/dashboard']);
         },
         (error) => {

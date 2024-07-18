@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 
 @Component({
   selector: 'app-update-dealer',
@@ -23,7 +24,7 @@ export class UpdateDealerComponent {
   isDealerPresent: any | true;
   response: any | undefined;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private utilityService: UtilityService, private router: Router) {}
   
   onSubmit()  {
     this.isInvalidRequest = false;
@@ -33,7 +34,7 @@ export class UpdateDealerComponent {
 
     if (!this.inValidMsg) {
       console.log('updateDealer Response', this.response);
-      this.authService.updateDealer({dealerInfo: this.dealerInfo, token: this.authService.getDealerToken()}).subscribe(
+      this.authService.updateDealer({dealerInfo: this.dealerInfo, token: this.utilityService.getDealerToken()}).subscribe(
         (resp: any) => {
           this.response = resp;
           console.log('updateDealer Response', resp);

@@ -25,6 +25,7 @@ import { WarrantyCardComponent } from './Components/warranty-card/warranty-card.
 import { SearchAllCarsComponent } from './Components/search-all-cars/search-all-cars.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { DealerInfoComponent } from './Components/dealer-info/dealer-info.component';
+import { WarrantyListComponent } from './Components/warranty-list/warranty-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DealerInfoComponent } from './Components/dealer-info/dealer-info.compon
     WarrantyCardComponent,
     SearchAllCarsComponent,
     DashboardComponent,
-    DealerInfoComponent
+    DealerInfoComponent,
+    WarrantyListComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 // import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
+import { UtilityService } from '../../Services/utility.service';
 @Component({
   selector: 'app-get-dealer',
   templateUrl: './get-dealer.component.html',
@@ -16,7 +17,7 @@ export class GetDealerComponent {
   isInvalidRequest: any | '';
 
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private utilityService: UtilityService, private router: Router) {}
   
   onSubmit()  {
     this.isDealerPresent = true;
@@ -27,7 +28,7 @@ export class GetDealerComponent {
     if (!this.username) {
       this.isEmpty = 'Username is empty. Please fill to continue.';
     } else {
-      this.authService.getDealerDetails({username: this.username, token: this.authService.getDealerToken()}).subscribe(
+      this.authService.getDealerDetails({username: this.username, token: this.utilityService.getDealerToken()}).subscribe(
         (resp: any) => {
           delete resp.modified;
           delete resp.created;

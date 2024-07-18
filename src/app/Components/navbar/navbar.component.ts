@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
+import { UtilityService } from 'src/app/Services/utility.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,36 +11,25 @@ import { Router } from '@angular/router';
 
 export class NavbarComponent {
 
-  isLogIn: any | false;
   dealerObj: any;
-  // userId: string;
-  constructor(private authService:AuthService, private router: Router) { }
-
-  ngOnInit(): void {
-    // NavbarComponent.loggedIn = this.authService.isLoggedIn();
-    this.isLogIn = this.authService.isLoggedIn();
-    console.log("ngOnInit | this.isLogIn", this.isLogIn);
-  }
+  constructor(private authService:AuthService, private router: Router, private utilityService: UtilityService) { }
 
   checkIsLoggedIn() { 
-    return this.authService.isLoggedIn();
+    return this.utilityService.isLoggedIn();
   }
 
   getUsername() {
-    this.dealerObj = this.authService.getDealerFromLocal();
+    this.dealerObj = this.utilityService.getDealerFromLocal();
     return this.dealerObj.username;
   }
 
   isAdmin() {
-    this.dealerObj = this.authService.getDealerFromLocal();
+    this.dealerObj = this.utilityService.getDealerFromLocal();
     return this.dealerObj.isAdmin;
   }
 
   logoutDealer(){
-    this.authService.logout();
-    // NavbarComponent.loggedIn = false'
-    this.isLogIn = false
-     //Route to dashboard page 
+    this.utilityService.logout();
     this.router.navigate(['/']);
   } 
 }
