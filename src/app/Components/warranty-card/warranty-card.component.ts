@@ -1,5 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-// import { Bootstrap } from 'ng-bootstrap;
+import { Component, Input } from '@angular/core';
+import { WarrantyInfo } from '../../WarrantyInfo';
+import { UtilityService } from '../../Services/utility.service';
+import * as bootstrap from 'bootstrap';
+
 
 @Component({
   selector: 'app-warranty-card',
@@ -7,30 +10,25 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./warranty-card.component.css']
 })
 export class WarrantyCardComponent {
-  // @Input() carDetails = {
-  //   carNumber: '',
-  //   rollNumber: '',
-  //   shopName: '',
-  //   warrantyPeriod: ''
-  // };
-  @ViewChild('myModal') modalElement!: ElementRef;
+  @Input() warrantyInfo: WarrantyInfo;
+  
+  selectedImage: string;
+  imageName: any;
 
+  warrantyInfoArr: WarrantyInfo[] = [];
+  objectKeys(obj: any): string[] {
+    return Object.keys(obj);
+  }
+  openModal(obj: any, linkNo: string): void {
+    this.selectedImage = obj['photos'][linkNo];
+    this.imageName = this.selectedImage.split('/').pop();
+    this.imageName = this.imageName.split('.')[0];
 
-  // constructor(private bootstrap: Bootstrap) { }
+    const modalElement = document.getElementById('imageModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
 
-  // openModal() {
-  //   const modal = new bootstrap.Modal(this.modalElement.nativeElement);
-  //   modal.show();
-  // }
-
-  // closeModal() {
-  //   const modal = new bootstap.Modal(this.modalElement.nativeElement);
-  //   modal.hide();
-  // }
-
-  // submitWarrantyCard() {
-  //   // Handle form submission logic
-  //   console.log('Warranty Card Details:', this.carDetails);
-  //   this.modalService.dismissAll();
-  // }
 }

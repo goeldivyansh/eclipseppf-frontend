@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showDealerInfoComponent}" (click) = "toggleDealerInfoComponent()">Welcome!</a>
+    <!-- <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showDealerInfoComponent}" (click) = "toggleDealerInfoComponent()">Welcome!</a> -->
     <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterDealerComponent}" *ngIf="isAdmin()" (click) = "toggleRegisterDealerComponent()">Register Dealer</a>
     <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterWarrantyComponent}" (click) = "toggleRegisterWarrantyComponent()">Register Warranty</a>
     <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showCheckWarrantyComponent}" (click) = "toggleCheckWarrantyComponent()">Check Warranty</a>

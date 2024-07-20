@@ -1,36 +1,82 @@
-<!-- warranty-card-modal.component.html
-<div class="modal fade" id="warrantyCardModal" tabindex="-1" aria-labelledby="warrantyCardModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="warrantyCardModalLabel">Warranty Card</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="container mt-3 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="text-center card-header">
+          <h3 class="mb-0">Warranty Details</h3>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label for="carNumber" class="form-label">Car Number</label>
-              <input type="text" class="form-control" id="carNumber" [(ngModel)]="carDetails.carNumber" name="carNumber">
+        <div class="card-body">
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Installation Date:</strong>
             </div>
-            <div class="mb-3">
-              <label for="rollNumber" class="form-label">Roll Number</label>
-              <input type="text" class="form-control" id="rollNumber" [(ngModel)]="carDetails.rollNumber" name="rollNumber">
+            <div class="col-md-8">
+              {{ warrantyInfo.application_date }}
             </div>
-            <div class="mb-3">
-              <label for="shopName" class="form-label">Shop Name</label>
-              <input type="text" class="form-control" id="shopName" [(ngModel)]="carDetails.shopName" name="shopName">
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>PPF Roll No:</strong>
             </div>
-            <div class="mb-3">
-              <label for="warrantyPeriod" class="form-label">Warranty Period</label>
-              <input type="text" class="form-control" id="warrantyPeriod" [(ngModel)]="carDetails.warrantyPeriod" name="warrantyPeriod">
+            <div class="col-md-8">
+              {{ warrantyInfo.roll_no }}
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" (click)="submitWarrantyCard()">Save changes</button>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Car No:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ warrantyInfo.car_no }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Valid Till:</strong>
+            </div>
+            <div class="col-md-8">
+              {{ warrantyInfo.expiry_date }}
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Warranty Card:</strong>
+            </div>
+            <div class="col-md-8">
+              <div>
+                <a class="btn btn-light border-primary" href="{{warrantyInfo.warranty_card}}" target="_blank">View warranty card</a>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-md-4">
+              <strong>Car Photos</strong>
+            </div>
+            <div class="col-md-8">
+              <img src="{{warrantyInfo.photos.link1}}" alt="Icon 1" class="icon" (click)="openModal(warrantyInfo, 'link1')">
+              <img src="{{warrantyInfo.photos.link2}}" alt="Icon 2" class="icon" (click)="openModal(warrantyInfo, 'link2')">
+              <img src="{{warrantyInfo.photos.link3}}" alt="Icon 3" class="icon" (click)="openModal(warrantyInfo, 'link3')">
+              <img src="{{warrantyInfo.photos.link4}}" alt="Icon 4" class="icon" (click)="openModal(warrantyInfo, 'link4')">
+              <img src="{{warrantyInfo.photos.link5}}" alt="Icon 5" class="icon" (click)="openModal(warrantyInfo, 'link5')">
+              <img src="{{warrantyInfo.photos.link6}}" alt="Icon 6" class="icon" (click)="openModal(warrantyInfo, 'link6')">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-   -->
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image: {{imageName}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="selectedImage" class="img-fluid img-thumbnail" alt="{{imageName}}">
+      </div>
+    </div>
+  </div>
+</div>

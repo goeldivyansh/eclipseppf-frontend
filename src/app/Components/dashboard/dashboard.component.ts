@@ -54,7 +54,6 @@ export class DashboardComponent {
   }
 
   toggleRegisterDealerComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = !this.showRegisterDealerComponent;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -62,10 +61,10 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
+    this.showDealerInfoComponent = !this.showRegisterDealerComponent ? true : false;
   }
+  
   toggleRegisterWarrantyComponent() {
-    console.log('toggleRegisterWarrantyComponent clicked: ', this.showRegisterWarrantyComponent);
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = !this.showRegisterWarrantyComponent;
     this.showCheckWarrantyComponent = false;
@@ -73,10 +72,9 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
-    console.log('toggleRegisterWarrantyComponent clicked 2: ', this.showRegisterWarrantyComponent);
+    this.showDealerInfoComponent = !this.showRegisterWarrantyComponent ? true : false;
   }
   toggleCheckWarrantyComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = !this.showCheckWarrantyComponent;
@@ -84,10 +82,10 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
+    this.showDealerInfoComponent = !this.showCheckWarrantyComponent ? true : false;
   }
 
   toggleUpdateDealerComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -95,10 +93,10 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
+    this.showDealerInfoComponent = !this.showUpdateDealerComponent ? true : false;
   }
 
   toggleGetDealerComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -106,10 +104,10 @@ export class DashboardComponent {
     this.showGetDealerComponent = !this.showGetDealerComponent;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = false;
+    this.showDealerInfoComponent = !this.showGetDealerComponent ? true : false;
   }
 
   toggleSearchDealerCarComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -117,10 +115,10 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = !this.showSearchDealerCarComponent;
     this.showSearchAllCarComponent = false;
+    this.showDealerInfoComponent = !this.showSearchDealerCarComponent ? true : false;
   }
 
   toggleSearchAllCarComponent() {
-    this.showDealerInfoComponent = false;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -128,6 +126,7 @@ export class DashboardComponent {
     this.showGetDealerComponent = false;
     this.showSearchDealerCarComponent = false;
     this.showSearchAllCarComponent = !this.showSearchAllCarComponent;
+    this.showDealerInfoComponent = !this.showSearchAllCarComponent ? true : false;
   }
 
   isAdmin() {

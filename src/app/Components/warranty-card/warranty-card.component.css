@@ -1,0 +1,12 @@
+.icon {
+  width: 25px;
+  height: 25px;
+}
+
+/* app.component.css */
+.img-thumbnail {
+  width: 500px;
+  height: 500px;
+  height: auto;
+  cursor: pointer;
+}

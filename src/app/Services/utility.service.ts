@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { WarrantyInfo } from '../WarrantyInfo';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilityService {
   dealerObj: any | null;
+  warrantyList: any | null;
   constructor() { }
 
   epochToDate(epoch: number) {
@@ -31,9 +34,9 @@ export class UtilityService {
     }
     
     // Parse day, month, and year from parts array
-    let day = parseInt(parts[0], 10);
+    let year = parseInt(parts[0], 10);
     let month = parseInt(parts[1], 10) - 1; // Month is zero-indexed in JavaScript (0-11)
-    let year = parseInt(parts[2], 10);
+    let day = parseInt(parts[2], 10);
     
     // Create a Date object with parsed components
     let dateObject = new Date(year, month, day);
@@ -59,6 +62,17 @@ export class UtilityService {
     return dateEpochTime;
   }
 
+  //-------------------------//
+  storeWarrantyListInLocal(warrantyList: object){
+    localStorage.setItem("warrantyList",JSON.stringify(warrantyList));
+    return true;
+  }
+
+  getWarrantyListFromLocal() {
+    this.warrantyList = localStorage.getItem("warrantyList");
+    // localStorage.removeItem("warrantyList");
+    return JSON.parse(this.warrantyList);
+  }
 
   // ----------------------- //
   storeDealerDetailsInLocal(dealerObject: object){

@@ -96,10 +96,14 @@
         Unexceptional error occured. Please try again!
       </div>
 
-      <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+      <!-- <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
         Warranty registered successfully!
-      </div>
+      </div> -->
 
     </div>
   </div>
+</div>
+
+<div *ngIf="this.warrantyInfoObj">
+  <app-warranty-card [warrantyInfo]="this.warrantyInfoObj"></app-warranty-card>
 </div>

@@ -64,7 +64,7 @@ export class SearchAllCarsComponent {
         (resp: any) => {
           
           this.warrantyInfoArr = [];
-          console.log('getDealerCars Response', resp);
+          console.log('getAllCars Response', resp);
           console.log(' warrantyInfoArr-1', this.warrantyInfoArr);
 
           for (let obj of resp) {
@@ -73,13 +73,27 @@ export class SearchAllCarsComponent {
               roll_no: obj.roll_no,
               car_no: obj.car_details.car_no,
               expiry_date: this.utilityService.epochToDate(obj.application_date + (5*365*24*60*60*1000)),
-              warranty_card: obj.warranty_card
+              warranty_card: obj.warranty_card,
+              photos: {
+                link1: obj.car_details.photos.link1,
+                link2: obj.car_details.photos.link2,
+                link3: obj.car_details.photos.link3,
+                link4: obj.car_details.photos.link4,
+                link5: obj.car_details.photos.link5,
+                link6: obj.car_details.photos.link6
+              }
             }
             this.warrantyInfoArr.push(this.warrantyInfoObj);
           }
           
           console.log(' warrantyInfoArr-2', this.warrantyInfoArr);
           this.response = resp;
+          if (this.warrantyInfoArr.length > 0) {
+            this.utilityService.storeWarrantyListInLocal(this.warrantyInfoArr);
+            const url = `/all-ppf-cars?from=${encodeURIComponent(this.startdate)}&to=${encodeURIComponent(this.enddate)}`;
+            window.open(url, '_blank');
+          }
+          
           this.startdate = '';
           this.enddate = '';
         },

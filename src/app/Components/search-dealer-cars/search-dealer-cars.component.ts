@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
 import { UtilityService } from '../../Services/utility.service';
+import { WarrantyInfo } from '../../WarrantyInfo';
 
 @Component({
   selector: 'app-search-dealer-cars',
@@ -22,6 +23,8 @@ export class SearchDealerCarsComponent {
   isAnyCarPresent: any | true;
   response: any;
   dealerObj: any | {};
+  warrantyInfoArr: WarrantyInfo[];
+  warrantyInfoObj: WarrantyInfo;
 
   constructor(private authService: AuthService, private carsService: CarsService,
     private utilityService: UtilityService, private router: Router) {
@@ -63,8 +66,38 @@ export class SearchDealerCarsComponent {
           this.response = resp;
           console.log('getDealerCars Response', resp);
 
+          this.warrantyInfoArr = [];
+
           // Show car list component
-      
+          for (let obj of resp) {
+            this.warrantyInfoObj = {
+              application_date: this.utilityService.epochToDate(obj.application_date),
+              roll_no: obj.roll_no,
+              car_no: obj.car_details.car_no,
+              expiry_date: this.utilityService.epochToDate(obj.application_date + (5*365*24*60*60*1000)),
+              warranty_card: obj.warranty_card,
+              photos: {
+                link1: obj.car_details.photos.link1,
+                link2: obj.car_details.photos.link2,
+                link3: obj.car_details.photos.link3,
+                link4: obj.car_details.photos.link4,
+                link5: obj.car_details.photos.link5,
+                link6: obj.car_details.photos.link6
+              }
+            }
+            
+            this.warrantyInfoArr.push(this.warrantyInfoObj);
+          }
+          
+          this.response = resp;
+          if (this.warrantyInfoArr.length > 0) {
+            this.utilityService.storeWarrantyListInLocal(this.warrantyInfoArr);
+            const url = `${this.username || this.dealerObj.username}/ppf-cars?from=${encodeURIComponent(this.startdate)}&to=${encodeURIComponent(this.enddate)}`;
+            window.open(url, '_blank');
+          }
+          
+          this.startdate = '';
+          this.enddate = '';
         },
         (error: any) => {
           console.log("getDealerCars Error: ", error);

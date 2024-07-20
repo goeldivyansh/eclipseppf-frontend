@@ -10,6 +10,7 @@ import { UtilityService } from '../../Services/utility.service';
 export class DealerInfoComponent {
 
   dealerObj: any | {};
+  
 
   constructor(private authService: AuthService, private utilityService: UtilityService,) {
     this.dealerObj = this.utilityService.getDealerFromLocal();

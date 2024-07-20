@@ -24,6 +24,7 @@
           </div>
         </div>
       </form>
+
       <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
         Either RollNo or CarNo must be present to check warranty.
       </div>
@@ -36,45 +37,14 @@
         Unexceptional error occured. Please try again!
       </div>
 
-      <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
-          Warranty fetched successfully.
-          <!-- Show Warranty Details -->
-          
-          <div class="container mt-5">
-            <div class="card">
-              <div class="card-header">
-                <h3>Warranty Details</h3>
-              </div>
-              <div class="card-body">
-                <div *ngFor="let key of objectKeys(this.response)">
-                  <div class="row">
-                    <div class="col-12 col-md-4">
-                      <strong>{{ key }}:</strong>
-                    </div>
-                    <!-- <div class="col-12 col-md-8"> -->
-                      <ng-container *ngIf="isObject(this.response[key]); else showValue">
-                        <div class="nested-object" style="margin-left: 20px;"
-                          *ngFor="let nestedKey of objectKeys(this.response[key])">
-                          <div class="col-12 col-md-4">
-                            <strong>{{ nestedKey }}:</strong>
-                          </div>
-                          <div class="col-12 col-md-8">
-                            {{this.response[key][nestedKey]}}
-                          </div>
-                        </div>
-                      </ng-container>
-                      <ng-template #showValue>{{ this.response[key] }}</ng-template>
-                    <!-- </div> -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <!-- <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
+        Warranty fetched successfully.
+      </div> -->
 
-
-      </div>
-      
     </div>
   </div>
 </div>
   
+  <div *ngIf="this.warrantyInfoObj">
+    <app-warranty-card [warrantyInfo]="this.warrantyInfoObj"></app-warranty-card>
+  </div>

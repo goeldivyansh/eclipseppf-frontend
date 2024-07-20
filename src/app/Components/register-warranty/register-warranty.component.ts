@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { CarsService } from '../../Services/cars.service';
 import { AuthService } from '../../Services/auth.service';
 import { UtilityService } from '../../Services/utility.service';
+import { WarrantyInfo } from '../../WarrantyInfo';
+
 
 @Component({
   selector: 'app-register-warranty',
@@ -37,7 +39,7 @@ export class RegisterWarrantyComponent {
   isAlreadyPresent: any | false;
   response: any | undefined;
   dealerObj: any;
-  // response: any | undefined;
+  warrantyInfoObj: WarrantyInfo;
 
   constructor(private carsService: CarsService, private authService: AuthService,
     private utilityService: UtilityService, private router: Router) {}
@@ -66,7 +68,21 @@ export class RegisterWarrantyComponent {
           this.isAlreadyPresent = false;
           this.isInvalidRequest = false;
 
-          // Show warranty card modal.
+          this.warrantyInfoObj = {
+            application_date: this.utilityService.epochToDate(resp.application_date),
+            roll_no: resp.roll_no,
+            car_no: resp.car_details.car_no,
+            expiry_date: this.utilityService.epochToDate(resp.application_date + (5*365*24*60*60*1000)),
+            warranty_card: resp.warranty_card,
+            photos: {
+              link1: resp.car_details.photos.link1,
+              link2: resp.car_details.photos.link2,
+              link3: resp.car_details.photos.link3,
+              link4: resp.car_details.photos.link4,
+              link5: resp.car_details.photos.link5,
+              link6: resp.car_details.photos.link6
+            }
+          }
         },
         (error: any) => {
           console.log("registerCarPpfWarranty Error: ", error);
