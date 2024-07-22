@@ -1,8 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <!-- <a class="navbar-brand" href="#">Eclipse</a> -->
     <a class="navbar-brand" routerLink="/">
-      <!-- <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
       EclipsePPF
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,5 +27,50 @@
 
       <a class="btn btn-dark text-danger border-danger" *ngIf="checkIsLoggedIn()" type="logout" (click) = "logoutDealer()">Log out</a>
     </div>
+  </div>
+</nav> -->
+
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container container-fluid">
+    <a class="navbar-brand text-orange sitename" type="button" *ngIf="checkIsLoggedIn()" routerLink="/dashboard"><strong><em>{{dealerObj.username}}</em></strong></a>
+    <a class="navbar-brand text-orange fs-4 spaced-text" type="button" *ngIf="!checkIsLoggedIn()" href="http://localhost:5501/"><strong>ECLIPSE PPF</strong></a>
+    <!-- <h3 class="navbar-brand text-orange my-0" type="button" *ngIf="!checkIsLoggedIn()">Eclipse PPF</h3> -->
+    <button class="navbar-toggler" type="button" *ngIf="checkIsLoggedIn()" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn() && isAdmin()" routerLink="/register-dealer" [ngClass]="{'active': activeItem === 'register-dealer'}" (click)="setActive('register-dealer')">Register Dealer</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn()" routerLink="/register-warranty" [ngClass]="{'active': activeItem === 'register-warranty'}" (click)="setActive('register-warranty')">Register Warranty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn()" routerLink="/check-warranty" [ngClass]="{'active': activeItem === 'check-warranty'}" (click)="setActive('check-warranty')">Check Warranty</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn() && isAdmin()" routerLink="/update-dealer" [ngClass]="{'active': activeItem === 'update-dealer'}" (click)="setActive('update-dealer')">Update Dealer Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn() && isAdmin()" routerLink="/get-dealer" [ngClass]="{'active': activeItem === 'get-dealer'}" (click)="setActive('get-dealer')">Get Dealer Info</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn()" routerLink="/search-dealer-cars" [ngClass]="{'active': activeItem === 'search-dealer-cars'}" (click)="setActive('search-dealer-cars')">Search Dealer's cars</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="checkIsLoggedIn() && isAdmin()" routerLink="/search-all-cars" [ngClass]="{'active': activeItem === 'search-all-cars'}" (click)="setActive('search-all-cars')">Search all cars</a>
+        </li>
+
+      </ul>
+      
+      <a class="btn-danger mx-1 my-1" type="text/html" *ngIf="checkIsLoggedIn()" type="logout" (click) = "logoutDealer()">Logout</a>
+    </div>
+    <a class="btn-primary mx-1 my-1" type="text/html" *ngIf="!checkIsLoggedIn()" type="logout" routerLink="/login">Dealer Login</a>  
+    
   </div>
 </nav>

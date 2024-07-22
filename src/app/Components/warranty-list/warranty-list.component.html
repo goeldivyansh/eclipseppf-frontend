@@ -24,7 +24,7 @@
           <td>{{obj.car_no}}</td>
           <td>{{obj.expiry_date}}</td>
           <td>
-            <a class="btn btn-light border-primary" href="{{obj.warranty_card}}" target="_blank">View warranty card</a>
+            <a class="btn btn-primary mx-auto" href="{{obj.warranty_card}}" target="_blank">View warranty card</a>
           </td>
   
           <td>
@@ -46,13 +46,16 @@
 
    
     <div class="card mb-3" *ngFor="let obj of warrantyInfoArr; let i = index">
+      <div class="text-center card-header">
+        <!-- <h3 class="mb-0">Warranty Details</h3> -->
+        <h5 class="card-title my-auto">Car PPF Warranty - {{i+1}}</h5>
+      </div>
       <div class="card-body">
-        <h5 class="card-title"><strong>Car PPF Warranty {{i+1}}</strong></h5>
         <p class="card-text my-2"><strong>PPF Roll No:</strong> {{obj.roll_no}}</p>
         <p class="card-text my-2"><strong>Car No:</strong> {{obj.car_no}}</p>
         <p class="card-text my-2"><strong>Installation Date:</strong> {{obj.application_date}}</p>
         <p class="card-text my-2"><strong>Valid Till:</strong> {{obj.expiry_date}}</p>
-        <p class="card-text my-2"><strong>Warranty Card:</strong> <a class="btn btn-light border-primary mx-2" href="{{obj.warranty_card}}" target="_blank">View warranty card</a></p>
+        <p class="card-text my-2"><strong>Warranty Card:</strong> <a class="btn btn-primary mx-2" href="{{obj.warranty_card}}" target="_blank">View warranty card</a></p>
         <p class="card-text my-2"><strong>Car Photos:</strong> 
           <img src="{{obj.photos.link1}}" alt="Icon 1" class="icon" (click)="openModal(obj, 'link1')">
           <img src="{{obj.photos.link2}}" alt="Icon 2" class="icon" (click)="openModal(obj, 'link2')">

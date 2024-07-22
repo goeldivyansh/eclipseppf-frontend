@@ -14,6 +14,9 @@ export class UpdateDealerComponent {
     username: '',
     password: '',
     address: '',
+    state: '',
+    city: '', 
+    pincode: '',
     mobile_no: '',
     email: '',
     active: ''

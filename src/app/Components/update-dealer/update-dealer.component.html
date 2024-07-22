@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-      <div class="col-md-6 offset-md-3">
+      <div class="col-lg-7 col-md-9  mx-auto">
         <div class="container" style="text-align: center;">
           <img class="img-fluid" width="100px" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png"
             alt="no-pic" height="170px" width="170px" srcset="">
@@ -24,6 +24,28 @@
             <input type="text" [(ngModel)]="dealerInfo.address" name="address" class="form-control" id="address" placeholder="">
             <label for="address">Address</label>
           </div>
+
+          <div class="row g-2">
+            <div class="col-md">
+            <div class="form-floating mb-3">
+              <input type="text" [(ngModel)]="dealerInfo.city" name="city" class="form-control" id="city" placeholder="">
+              <label for="city">City</label>
+            </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating mb-3">
+                <input type="text" [(ngModel)]="dealerInfo.state" name="state" class="form-control" id="state" placeholder="">
+                <label for="state">State</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating mb-3">
+                <input type="number" [(ngModel)]="dealerInfo.pincode" name="pincode" class="form-control" id="pincode" placeholder="">
+                <label for="pincode">Pincode</label>
+              </div>
+            </div>
+          </div>
+
           <div class="form-floating mb-3">
             <input type="number" [(ngModel)]="dealerInfo.mobile_no" name="mobile_no" class="form-control" id="mobile_no" placeholder="">
             <label for="mobile_no">Mobile Number</label>
@@ -43,7 +65,7 @@
 
           <div class="row mb-3">
             <div class="text-center">
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
         </form>

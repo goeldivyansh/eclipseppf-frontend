@@ -14,6 +14,12 @@ export class NavbarComponent {
   dealerObj: any;
   constructor(private authService:AuthService, private router: Router, private utilityService: UtilityService) { }
 
+  activeItem: string = 'home';
+
+  setActive(item: string) {
+    this.activeItem = item;
+  }
+
   checkIsLoggedIn() { 
     return this.utilityService.isLoggedIn();
   }
@@ -30,6 +36,6 @@ export class NavbarComponent {
 
   logoutDealer(){
     this.utilityService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   } 
 }

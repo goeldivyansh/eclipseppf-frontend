@@ -1,75 +1,89 @@
-  <!-- Navbar -->
 
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div class="container">
-        <a class="navbar-brand" href="#">Your Brand</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
+<div class="container mt-3 mb-5">
+  
+  <div class="text-center">
+    <img src="../../../assets/img/car.jpg" class="img-fluid animated my-4" alt="">
+  </div>
+  
+  
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+
+        <div class="text-center card-header">
+          <h3 class="mb-0">WARRANTY INFORMATION</h3>
         </div>
-    </div>
-</nav>
+        
+        <div class="card-body">
+          <h5>Customer Information</h5>
 
-<div class = 'body'>
-
-    <!-- Hero Section -->
-    <section class="jumbotron jumbotron-fluid jumbotron-custom">
-        <div class="container text-center">
-            <h1 class="display-4 p-2">Eclipse PPF Paint Protective Films</h1>
-            <p class="lead pb-3">Shield your ride with Eclipse: Where Innovation Meets Protection. 
-              Discover unrivaled defense against the elements, keeping your car flawless
-              and shining through every journey!
-            </p>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-5">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="feature-box">
-                        <h3>Feature 1</h3>
-                        <p>Discover our amazing features.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="feature-box">
-                        <h3>Feature 2</h3>
-                        <p>Explore what we have to offer.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="feature-box">
-                        <h3>Feature 3</h3>
-                        <p>Get started with us today.</p>
-                    </div>
-                </div>
+          <div class="row mb-1"  *ngFor="let key of objectKeys(response.customer);">
+            <div class="col-sm-4 text-capitalize">
+              <strong>{{key}}</strong>
             </div>
+            <div class="col-sm-8">
+              {{ response.customer[key] }}
+            </div>
+          </div>
+
+          <!-- <div class="row mb-1">
+            <div class="col-sm-4">
+              <strong>PPF Roll No:</strong>
+            </div>
+            <div class="col-sm-8">
+              {{ response.roll_no }}
+            </div>
+          </div> -->
+
+          <h5>Dealer Information</h5>
+          <div class="row mb-1"  *ngFor="let key of objectKeys(response.dealer);">
+            <div class="col-sm-4 text-capitalize">
+              <strong>{{key}}</strong>
+            </div>
+            <div class="col-sm-8">
+              {{ response.dealer[key] }}
+            </div>
+          </div>
+
+          <h5>PPF Information</h5>
+          <div class="row mb-1"  *ngFor="let key of objectKeys(response.ppf);">
+            <div class="col-sm-4 text-capitalize">
+              <strong>{{key}}</strong>
+            </div>
+            <div class="col-sm-8">
+              {{ response.ppf[key] }}
+            </div>
+          </div>
+
+          <h5>Vehicle Information</h5>
+          <div class="row mb-1"  *ngFor="let key of objectKeys(response.car);">
+            <div class="col-sm-4 text-capitalize">
+              <strong>{{key}}</strong>
+            </div>
+            <div class="col-sm-8">
+              {{ response.car[key] }}
+            </div>
+          </div>
+          
+
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer-custom text-center">
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
-    </footer>
+      </div>
+    </div>
+  </div>
 </div>
+  
 
-<app-footer></app-footer>
 
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image: {{imageName}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img [src]="selectedImage" class="img-fluid img-thumbnail" alt="{{imageName}}">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+.text-orange {
+  color: #e65825
+}
+
+.btn-primary,
+.btn-primary:focus {
+  color: #ffffff;
+  background: #275594;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 8px 25px;
+  margin: 0 0 0 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus:hover {
+  color: #ffffff;
+  background: color-mix(in srgb, #275594, transparent 15%);
+}
+
+.btn-danger,
+.btn-danger:focus {
+  color: #E5e5e5;
+  background: #e65825;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 8px 25px;
+  margin: 0 0 0 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.btn-danger:hover,
+.btn-danger:focus:hover {
+  color: #ffffff;
+  background: color-mix(in srgb, #e65825, transparent 15%);
+}
+
+.spaced-text {
+  letter-spacing: 2px; /* Adjust the value as needed */
+}

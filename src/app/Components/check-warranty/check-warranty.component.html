@@ -9,24 +9,28 @@
 
       <form (ngSubmit)="onSubmit()">
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="roll_no" name="roll_no" class="form-control" id="roll_no" placeholder="PPF Roll Number">
+          <input type="text" [(ngModel)]="roll_no" name="roll_no" class="form-control" id="roll_no" placeholder="">
           <label for="roll_no">PPF Roll No</label>
         </div>
 
         <div class="form-floating mb-3">
-          <input type="text" [(ngModel)]="car_no" name="car_no" class="form-control" id="car_no" placeholder="Car / Chasis number">
+          <input type="text" [(ngModel)]="car_no" name="car_no" class="form-control" id="car_no" placeholder="">
           <label for="car_no">Car No / Chasis No</label>
         </div>
         
         <div class="row mb-3">
           <div class="text-center">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
       </form>
 
       <div *ngIf="this.isEmpty" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
-        Either RollNo or CarNo must be present to check warranty.
+        Either Roll No OR Car No must be present to check warranty.
+      </div>
+
+      <div *ngIf="this.isAuthorized === false" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
+        You are not authorzed to check warranty of this roll no / car no.
       </div>
       
       <div *ngIf="this.isNotPresent" class="alert alert-danger rounded-pill p-2 mt-3 mx-5 text-center" role="alert" >
@@ -47,4 +51,9 @@
   
   <div *ngIf="this.warrantyInfoObj">
     <app-warranty-card [warrantyInfo]="this.warrantyInfoObj"></app-warranty-card>
+
+    <div>
+      <a class="btn btn-light border-primary" href="{{response.warranty_card}}" target="_blank">View warranty card</a>
+    </div>
   </div>
+

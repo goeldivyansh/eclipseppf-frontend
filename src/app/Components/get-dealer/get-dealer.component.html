@@ -15,7 +15,7 @@
 
           <div class="row mb-3">
             <div class="text-center">
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </div>
         </form>
@@ -32,7 +32,6 @@
         </div>
   
         <div *ngIf="this.response" class="alert alert-success rounded-pill p-2 mt-3 mx-5 text-center" role="alert">
-          
           <div class="container mt-5">
             <div class="card">
               <div class="card-header">
@@ -40,7 +39,7 @@
               </div>
               <div class="card-body">
                 <div class="row" *ngFor="let key of objectKeys(this.response)">
-                  <div class="col-12 col-md-4">
+                  <div class="col-12 col-md-4 text-capitalize">
                     <strong>{{ key }}:</strong>
                   </div>
                   <div class="col-12 col-md-8">

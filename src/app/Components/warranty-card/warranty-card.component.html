@@ -7,52 +7,52 @@
         </div>
         <div class="card-body">
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>Installation Date:</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               {{ warrantyInfo.application_date }}
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>PPF Roll No:</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               {{ warrantyInfo.roll_no }}
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>Car No:</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               {{ warrantyInfo.car_no }}
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>Valid Till:</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               {{ warrantyInfo.expiry_date }}
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>Warranty Card:</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               <div>
                 <a class="btn btn-light border-primary" href="{{warrantyInfo.warranty_card}}" target="_blank">View warranty card</a>
               </div>
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-md-4">
+            <div class="col-sm-4">
               <strong>Car Photos</strong>
             </div>
-            <div class="col-md-8">
+            <div class="col-sm-8">
               <img src="{{warrantyInfo.photos.link1}}" alt="Icon 1" class="icon" (click)="openModal(warrantyInfo, 'link1')">
               <img src="{{warrantyInfo.photos.link2}}" alt="Icon 2" class="icon" (click)="openModal(warrantyInfo, 'link2')">
               <img src="{{warrantyInfo.photos.link3}}" alt="Icon 3" class="icon" (click)="openModal(warrantyInfo, 'link3')">

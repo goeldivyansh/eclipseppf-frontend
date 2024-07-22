@@ -31,7 +31,9 @@ export class GetDealerComponent {
       this.authService.getDealerDetails({username: this.username, token: this.utilityService.getDealerToken()}).subscribe(
         (resp: any) => {
           delete resp.modified;
+          resp.joined_on = this.utilityService.epochToDate(resp.created);
           delete resp.created;
+
           this.response = resp; 
           console.log("getDealerDetails resp: ", resp);
         },

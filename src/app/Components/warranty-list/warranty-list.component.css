@@ -11,6 +11,25 @@
   cursor: pointer;
 }
 
+.btn-primary,
+.btn-primary:focus {
+  color: #ffffff;
+  background: #275594;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 7px 22px;
+  margin: 0 0 0 30px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus:hover {
+  color: #ffffff;
+  background: color-mix(in srgb, #275594, transparent 15%);
+}
+
+
 @media (max-width: 767.98px) {
   .table-container {
     display: none;

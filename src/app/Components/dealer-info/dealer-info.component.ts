@@ -14,7 +14,7 @@ export class DealerInfoComponent {
 
   constructor(private authService: AuthService, private utilityService: UtilityService,) {
     this.dealerObj = this.utilityService.getDealerFromLocal();
-    delete this.dealerObj.created;
+    this.dealerObj.created = this.utilityService.epochToDate(this.dealerObj.created);
     delete this.dealerObj.modified;
     delete this.dealerObj.token;
     delete this.dealerObj.isAdmin;

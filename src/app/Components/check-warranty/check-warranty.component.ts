@@ -11,12 +11,13 @@ import { WarrantyInfo } from '../../WarrantyInfo';
   styleUrls: ['./check-warranty.component.css']
 })
 export class CheckWarrantyComponent {
-  roll_no: any | '';
-  car_no: any | '';
+  roll_no: string | '';
+  car_no: string | '';
   response: any | undefined;
-  isEmpty: any | false;
-  isInvalidRequest: any | '';
-  isNotPresent: any | false;
+  isEmpty: boolean = false;
+  isInvalidRequest: boolean = false;
+  isAuthorized: boolean = true;
+  isNotPresent: any = false;
   dealerObj: any | {};
   warrantyInfoObj: WarrantyInfo;
 
@@ -28,6 +29,7 @@ export class CheckWarrantyComponent {
     this.isInvalidRequest = false;
     this.isNotPresent = false;
     this.response = undefined;
+    this.isAuthorized = true;
 
     if (!this.roll_no && !this.car_no) {
       this.isEmpty = true;
@@ -65,7 +67,9 @@ export class CheckWarrantyComponent {
         },
         (error: any) => {
           console.log("getWarranty Error: ", error);
-          if (error.status === 404) {
+          if (error.status === 401) {
+            this.isAuthorized = false;
+          } else if (error.status === 404) {
             this.isNotPresent = true;
           } else {
             this.isInvalidRequest = true;
