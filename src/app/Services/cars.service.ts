@@ -12,18 +12,28 @@ export class CarsService {
   url = 'http://localhost:3000';
   resp: any;
 
-  constructor(private http:HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
-  registerCarPpfWarranty(options: any) {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': options.token
-    });
+  // registerCarPpfWarranty(options: any) {   
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //     'Authorization': options.token
+  //   });
 
-    console.log("Entering registerCarPpfWarranty | credentials = ", options.ppfRollInfo);
-    return this.resp = this.http.post(`${this.url}/carppf/${options.username}/warranty`, options.ppfRollInfo, {headers});
+  //   console.log("Entering registerCarPpfWarranty | credentials = ", options.ppfRollInfo);
+  //   return this.resp = this.http.post(`${this.url}/carppf/${options.username}/warranty`, options.ppfRollInfo, {headers});
+  // }
+  registerCarPpfWarranty(username: string, formData: any) {   
+    console.log("Entering registerCarPpfWarranty | credentials = ", username);
+    return this.resp = this.http.post(`${this.url}/carppf/${username}/warranty`, formData);
   }
+
+  // uploadImages(username: string, formData: any) {
+  //   console.log("Entering uploadImages | images = ", formData);
+  //   return this.resp = this.http.post(`${this.url}/upload/${username}/upload-photos`, formData);
+  // }
   
+
   getWarranty(options: any) {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',

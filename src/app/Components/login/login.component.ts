@@ -23,7 +23,11 @@ export class LoginComponent {
   // response: any | undefined;
   isInvalidRequest: any | false;
 
-  constructor(private authService: AuthService, private router: Router, private utilityService: UtilityService,) {}
+  constructor(private authService: AuthService, private router: Router, private utilityService: UtilityService) {
+    if (this.utilityService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
   
   onSubmit()  {
     this.isEmpty = false;

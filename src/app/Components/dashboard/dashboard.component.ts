@@ -43,7 +43,7 @@ export class DashboardComponent {
   }
 
   toggleDealerInfoComponent() {
-    this.showDealerInfoComponent = !this.showDealerInfoComponent;
+    this.showDealerInfoComponent = true;
     this.showRegisterDealerComponent = false;
     this.showRegisterWarrantyComponent = false;
     this.showCheckWarrantyComponent = false;
@@ -134,4 +134,13 @@ export class DashboardComponent {
     return this.dealerObj.isAdmin;
   }
 
+  checkIsLoggedIn() { 
+    return this.utilityService.isLoggedIn();
+  }
+  
+  logoutDealer(){
+    this.utilityService.logout();
+    this.router.navigate(['/']);
+    window.open('http://127.0.0.1:5501/index.html');
+  }
 }

@@ -1,17 +1,43 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container">
-    <!-- <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showDealerInfoComponent}" (click) = "toggleDealerInfoComponent()">Welcome!</a> -->
-    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterDealerComponent}" *ngIf="isAdmin()" (click) = "toggleRegisterDealerComponent()">Register Dealer</a>
-    <a class="btn btn-light border-success mx-1 my-1" type="text/html" [ngClass]="{'active': this.showRegisterWarrantyComponent}" (click) = "toggleRegisterWarrantyComponent()">Register Warranty</a>
-    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showCheckWarrantyComponent}" (click) = "toggleCheckWarrantyComponent()">Check Warranty</a>
+<!-- <nav class="navbar navbar-expand-lg bg-dark bg-body-tertiary"> -->
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container container-fluid">
+    <a class="navbar-brand text-orange" type="button" (click) = "toggleDealerInfoComponent()">{{dealerObj.username}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-    <a class="btn btn-light border-primary mx-1 my-1" *ngIf="isAdmin()" [ngClass]="{'active': this.showUpdateDealerComponent}" type="text/html" (click) = "toggleUpdateDealerComponent()">Update Dealer Info</a>
-    <a class="btn btn-light border-primary mx-1 my-1" *ngIf="isAdmin()" [ngClass]="{'active': this.showGetDealerComponent}" type="text/html" (click) = "toggleGetDealerComponent()">Get Dealer Info</a>
+        <li class="nav-item">
+          <a class="nav-link" type="button" [ngClass]="{'active': this.showRegisterDealerComponent}" *ngIf="isAdmin()" (click) = "toggleRegisterDealerComponent()">Register Dealer</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" [ngClass]="{'active': this.showRegisterWarrantyComponent}" (click) = "toggleRegisterWarrantyComponent()">Register Warranty</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" [ngClass]="{'active': this.showCheckWarrantyComponent}" (click) = "toggleCheckWarrantyComponent()">Check Warranty</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="isAdmin()" [ngClass]="{'active': this.showUpdateDealerComponent}" (click) = "toggleUpdateDealerComponent()">Update Dealer Info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" *ngIf="isAdmin()" [ngClass]="{'active': this.showGetDealerComponent}" (click) = "toggleGetDealerComponent()">Get Dealer Info</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" type="button" [ngClass]="{'active': this.showSearchDealerCarComponent}" (click) = "toggleSearchDealerCarComponent()">Search Dealer's cars</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" type="button" [ngClass]="{'active': this.showSearchAllCarComponent}" *ngIf="isAdmin()" (click) = "toggleSearchAllCarComponent()">Search all cars</a>
+        </li>
 
+      </ul>
+      
+      <a class="btn btn-dark text-orange border-danger mx-1 my-1" type="text/html" *ngIf="checkIsLoggedIn()" type="logout" (click) = "logoutDealer()">Logout</a>
+    </div>
     
-    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showSearchDealerCarComponent}" (click) = "toggleSearchDealerCarComponent()">Search Dealer's cars</a>
-    <a class="btn btn-light border-primary mx-1 my-1" type="text/html" [ngClass]="{'active': this.showSearchAllCarComponent}" *ngIf="isAdmin()" (click) = "toggleSearchAllCarComponent()">Search all cars</a>
-
   </div>
 </nav>
 

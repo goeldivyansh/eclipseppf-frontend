@@ -1,42 +1,85 @@
-<div class="container my-3" *ngIf="this.warrantyInfoArr; else show_empty">
+<div class="container  my-3" *ngIf="this.warrantyInfoArr; else show_empty">
   <h3><span class="border-bottom">Recent registered cars</span></h3>
 
-  <table class="table">
-    <thead>      
-      <tr>
-        <th scope="col">S.No</th>
-        <th scope="col">Installation Date</th>
-        <th scope="col">PPF Roll No</th>
-        <th scope="col">Car No</th>
-        <th scope="col">Valid Till</th>
-        <th scope="col">Warranty Card</th>
-        <th scope="col">Car Photos</th>
-      </tr>
-    </thead>
+  <!-- Table for larger screens -->
+  <div class="table-container">
+    <table class="table">
+      <thead>      
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Installation Date</th>
+          <th scope="col">PPF Roll No</th>
+          <th scope="col">Car No</th>
+          <th scope="col">Valid Till</th>
+          <th scope="col">Warranty Card</th>
+          <th scope="col">Car Photos</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let obj of warrantyInfoArr; let i = index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{obj.application_date}}</td>
+          <td>{{obj.roll_no}}</td>
+          <td>{{obj.car_no}}</td>
+          <td>{{obj.expiry_date}}</td>
+          <td>
+            <a class="btn btn-light border-primary" href="{{obj.warranty_card}}" target="_blank">View warranty card</a>
+          </td>
+  
+          <td>
+            <img src="{{obj.photos.link1}}" alt="Icon 1" class="icon" (click)="openModal(obj, 'link1')">
+            <img src="{{obj.photos.link2}}" alt="Icon 2" class="icon" (click)="openModal(obj, 'link2')">
+            <img src="{{obj.photos.link3}}" alt="Icon 3" class="icon" (click)="openModal(obj, 'link3')">
+            <img src="{{obj.photos.link4}}" alt="Icon 4" class="icon" (click)="openModal(obj, 'link4')">
+            <img src="{{obj.photos.link5}}" alt="Icon 5" class="icon" (click)="openModal(obj, 'link5')">
+            <img src="{{obj.photos.link6}}" alt="Icon 6" class="icon" (click)="openModal(obj, 'link6')">
+          </td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <tbody>
-      <tr *ngFor="let obj of warrantyInfoArr; let i = index">
-        <th scope="row">{{i+1}}</th>
-        <td>{{obj.application_date}}</td>
-        <td>{{obj.roll_no}}</td>
-        <td>{{obj.car_no}}</td>
-        <td>{{obj.expiry_date}}</td>
-        <td>
-          <a class="btn btn-light border-primary" href="{{obj.warranty_card}}" target="_blank">View warranty card</a>
-        </td>
+   <!-- Cards for smaller screens -->
+  <div class="card-container">
 
-        <td>
+   
+    <div class="card mb-3" *ngFor="let obj of warrantyInfoArr; let i = index">
+      <div class="card-body">
+        <h5 class="card-title"><strong>Car PPF Warranty {{i+1}}</strong></h5>
+        <p class="card-text my-2"><strong>PPF Roll No:</strong> {{obj.roll_no}}</p>
+        <p class="card-text my-2"><strong>Car No:</strong> {{obj.car_no}}</p>
+        <p class="card-text my-2"><strong>Installation Date:</strong> {{obj.application_date}}</p>
+        <p class="card-text my-2"><strong>Valid Till:</strong> {{obj.expiry_date}}</p>
+        <p class="card-text my-2"><strong>Warranty Card:</strong> <a class="btn btn-light border-primary mx-2" href="{{obj.warranty_card}}" target="_blank">View warranty card</a></p>
+        <p class="card-text my-2"><strong>Car Photos:</strong> 
           <img src="{{obj.photos.link1}}" alt="Icon 1" class="icon" (click)="openModal(obj, 'link1')">
           <img src="{{obj.photos.link2}}" alt="Icon 2" class="icon" (click)="openModal(obj, 'link2')">
           <img src="{{obj.photos.link3}}" alt="Icon 3" class="icon" (click)="openModal(obj, 'link3')">
           <img src="{{obj.photos.link4}}" alt="Icon 4" class="icon" (click)="openModal(obj, 'link4')">
           <img src="{{obj.photos.link5}}" alt="Icon 5" class="icon" (click)="openModal(obj, 'link5')">
           <img src="{{obj.photos.link6}}" alt="Icon 6" class="icon" (click)="openModal(obj, 'link6')">
-        </td>
-      
-      </tr>
-    </tbody>
-  </table>
+        </p>
+      </div>
+    </div>
+
+
+
+    <!-- <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">Row 1</h5>
+        <p class="card-text">Column 1: Row 1 Data 1</p>
+        <p class="card-text">Column 2: Row 1 Data 2</p>
+        <p class="card-text">Column 3: Row 1 Data 3</p>
+        <p class="card-text">Column 4: Row 1 Data 4</p>
+        <p class="card-text">Column 5: Row 1 Data 5</p>
+      </div>
+    </div> -->
+
+
+
+  </div>
 
 </div>
 

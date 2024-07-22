@@ -7,7 +7,7 @@
         <h2>Register PPF Roll Warranty</h2>
       </div>
       
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #uploadForm="ngForm">
         <div class="form-floating mb-3">
           <input type="number" [(ngModel)]="ppfRollInfo.quantity" class="form-control" id="quantity" name="quantity" placeholder="">
           <label for="quantity">Quantity Consumed (sqft)</label>
@@ -74,7 +74,7 @@
           </div>
         </div>
         <div class="form-floating mb-3">
-          <input type="file" class="form-control" [(ngModel)]="ppfRollInfo.car_details.photos" id="photos" name="photos" accept="image/*" multiple>
+          <input type="file" class="form-control" #fileUpload (change)="onFileSelected($event)" id="photos fileUpload" name="fileUpload" accept="image/*" multiple>
           <label for="photos">6 Photographs Upload</label>
         </div>
 
